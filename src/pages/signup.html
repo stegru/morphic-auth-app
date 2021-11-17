@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6 order-2">
+      <div class="bg-light mt-5 p-4 rounded-lg">
+
+        <div class="d-flex justify-content-around align-items-center">
+          <img src="../img/logo-color.svg" alt="" class="me-3" />
+          <h3>Morphic is better with a Morphic account</h3>
+        </div>
+
+        <div class="mt-4 lead fw-bold">
+          <p class="h4" id="account-benefits">An account allows you to</p>
+          <ul aria-labelledby="account-benefits">
+            <li>Back up your accessibility and usability settings to Morphic</li>
+            <li>Apply your settings quickly to any computer with Morphic on it</li>
+            <li>Make your own MorphicBar (with a subscription or if part of the Early Release Program)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="mb-3">
+        <h2>New to Morphic?</h2>
+        <div>Create your Morphic account now</div>
+      </div>
+
+      <form id="signupForm" novalidate>
+
+        <div id="formAlert" class="alert alert-danger" role="alert"></div>
+
+        <input-field id="email"
+                     type="email"
+                     label="Email:"
+                     pattern="^\S+@\S+.\S+$"
+                     validation-error="Enter an email address"
+        ></input-field>
+
+        <input-field id="password"
+                     type="password"
+                     label="Password:"
+                     pattern=".{6,}"
+                     validation-error="Passwords need to be at least 6 characters"
+        ></input-field>
+
+        <input-field id="passwordConfirm"
+                     type="password"
+                     label="Confirm Password:"
+                     validation-error="Enter the same password again"
+                     pattern=""
+        ></input-field>
+
+        <div class="text-center mb-4">
+          <a href="/">I already have a Morphic account</a>
+        </div>
+
+        <div class="m-3 small">
+          <small>By signing up for Morphic you are agreeing to the <a href="externalLinks.termsOfUse">Terms of Service</a> and <a href="externalLinks.privacyPolicy">Privacy Policy</a></small>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="py-2 px-s1 btn btn-outline-secondary">Return to Sign In</button>
+          <button type="submit" class="py-2 px-5 btn btn-primary">Sign up</button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>

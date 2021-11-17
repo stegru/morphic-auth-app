@@ -1,0 +1,124 @@
+@import "bootstrap";
+
+body {
+  margin: 0;
+}
+
+#top {
+  border-bottom: 2px solid $morphic-blue-color;
+  padding: 0;
+  max-width: 100%;
+  overflow: hidden;
+
+  .headerTitle {
+    display: inline;
+    color: $morphic-blue-color;
+    margin-left: 0.8em;
+    font-size: 22px;
+  }
+
+  .logo {
+    margin-left: 1rem;
+    height: 2.4rem;
+  }
+}
+
+// Skip to content link - off-screen until focused
+.contentLink {
+  font-size: larger;
+  background-color: white;
+  padding: 2px;
+  position: absolute;
+  z-index: 100;
+  transform: translateX(-100%);
+
+  &:focus {
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform 250ms ease-out;
+    }
+  }
+
+  &:not(.screenReader):focus-visible {
+    transform: translateX(0);
+  }
+}
+
+#PageContainer {
+  // put footer at the bottom of the view
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  #PageContent {
+    flex-grow: 1;
+  }
+
+  padding: 0;
+  visibility: visible !important;
+
+}
+
+// Un-hide the content when the css is loaded
+#ContentLoader {
+  display: none;
+}
+
+// Hide empty alert boxes
+.alert:empty {
+  display: none;
+}
+
+
+.input-field {
+
+  position: relative;
+
+  // Show either the "required" or validation message, for an invalid input
+  input:placeholder-shown ~ .invalid-feedback:not(.required),
+  input:not(:placeholder-shown) ~ .invalid-feedback.required {
+    display: none;
+  }
+
+  // Hide the validation message placeholder when the real message is displayed
+  input ~ .invalid-feedback.invalid-placeholder {
+    display: block !important;
+  }
+
+  .was-validated input:invalid ~ .invalid-feedback.invalid-placeholder {
+    display: none !important;
+  }
+
+  .toggle-password {
+    display: none;
+  }
+
+  input.input-password {
+    & ~ .toggle-password {
+      display: block;
+
+      position: absolute;
+      right: 0;
+      float: right;
+
+      padding: calc(#{$input-padding-y} + #{$input-border-width}) $input-padding-x;
+      transform: translateY(-100%);
+
+      img {
+        vertical-align: text-bottom;
+      }
+
+    }
+
+    background-position: right $input-height-inner center !important;
+
+
+    &[type='password'] ~ .toggle-password .show-password {
+      display: none;
+    }
+
+    &:not([type='password']) ~ .toggle-password .hide-password {
+      display: none;
+    }
+  }
+
+}
+

@@ -1,0 +1,49 @@
+{
+  "General": {
+    "no_button": "No",
+    "yes_button": "Yes",
+    "ok_button": "OK",
+    "cancel_button": "Cancel",
+    "member-state": {
+      "active": "Active",
+      "invited": "Not yet accepted",
+      "uninvited": "Uninvited"
+    }
+  },
+  "Errors": {
+    "generic-server-error": "Server error: %{message}",
+    "generic-title": "Unable to %{action}",
+    "generic-action": "perform the last action",
+    "invalid_credentials": "That email address or password has not been recognized.",
+    "missing_required": "A required field is missing.",
+    "existing_email": "There is already an account associated with that email address.",
+    "existing_username": "There is already an account which uses that user name.",
+    "limit_reached": "The maximum number of members for your subscription has been reached.",
+    "cannot_demote_self": "You are unable to demote yourself.",
+    "cannot_delete_self": "You are unable to delete yourself from the community.",
+    "http": {
+      "404": "Unable to access to the server. Please try again later.",
+      "500": "There is a problem with the server. Please try again later."
+    },
+    "validation": {
+      "app-missing": "The application to open has not been chosen.",
+      "field-missing": "A required field is missing: %{name}.",
+      "link-missing": "The site to open has not been chosen."
+    }
+  },
+  "Home": {
+  },
+  "Registration": {
+    "account-benefits-lead": "An account allows you to",
+    "account-benefits_list": [
+      "Back up your accessibility and usability settings to Morphic",
+      "Apply your settings quickly to any computer with Morphic on it",
+      "Make your own MorphicBar (with a subscription or if part of the Early Release Program)"
+    ],
+    "back_link": "Return to Sign In",
+    "form_heading": "New to Morphic?",
+    "form_lead": "Create your Morphic account now",
+    "side-heading": "Morphic is better with a Morphic account",
+    "submit_button": "Sign up"
+  }
+}
