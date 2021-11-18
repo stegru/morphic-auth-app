@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cp -a ./node_modules/bootstrap-icons/icons ./src/img/bootstrap-icons",
+    "postinstall": "node ./post-install.js",
     "build": "npx webpack --mode=production",
     "serve": "npx webpack-dev-server --mode=development",
     "test": "echo \"Error: no test specified\" && exit 1",
