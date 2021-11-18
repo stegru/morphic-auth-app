@@ -7,7 +7,7 @@
     "postinstall": "cp -a ./node_modules/bootstrap-icons/icons ./src/img/bootstrap-icons",
     "build": "npx webpack --mode=production",
     "serve": "npx webpack-dev-server --mode=development",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"no tests\"",
     "lint": "npx eslint src/**/*.js"
   },
   "author": "",
