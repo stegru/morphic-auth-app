@@ -1,8 +1,0 @@
-.idea
-*.iml
-
-
-/node_modules/
-/dist/
-
-/src/img/bootstrap-icons

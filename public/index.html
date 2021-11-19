@@ -4,9 +4,14 @@
   <meta charset="UTF-8">
   <meta content="width=device-width" name="viewport">
   <title>Morphic</title>
-  <style>
-    #PageContainer { visibility: hidden }
-  </style>
+
+      <link rel="stylesheet" href="style/app.css" />
+      <link rel="stylesheet" href="style/bootstrap.css" />
+  
+      <script defer src="js/axios.min.js"></script>
+      <script defer src="js/cash.min.js"></script>
+  
+  <script defer type="module" src="js/index.js"></script>
 </head>
 
 <body>
@@ -15,17 +20,82 @@
 
 <div class="container-fluid " id="PageContainer">
 
-  <%= require("../src/header.html").default %>
+  <div role="banner" class="navbar navbar-light bg-light navbar-expand-md" id="top">
+    <header>
+      <a id="SkipToContent" href="#PageContent" class="contentLink">Skip to content</a>
+      <div class="navbar-brand">
+        <a href="/" ><img src="./img/logo-color.svg" alt="Custom MorphicBar Tool" class="logo"></a>
+
+        <h1 class="headerTitle">Morphic Customization Tool</h1>
+      </div>
+    </header>
+
+  </div>
 
   <div role="main" id="PageContent" class="main mt-4">
-    <%= require(`../src/pages/${htmlWebpackPlugin.options.partial}`).default %>
+    
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+
+      <form id="loginForm" novalidate>
+        <h1 class="my-4">Sign into Morphic</h1>
+
+        <div id="formAlert" class="alert alert-danger" role="alert"></div>
+
+        <input-field id="email"
+                     type="email"
+                     label="Sign in with Email:"
+                     pattern="^\S+@\S+.\S+$"
+                     validation-error="Enter an email address"
+        ></input-field>
+
+        <input-field id="password"
+                     type="password"
+                     label="Password for Morphic:"
+                     pattern=".*"
+        ></input-field>
+
+        <div class="text-end">
+          <a href="./password-reset.html">I forgot my password</a>
+        </div>
+
+        <div class="text-center my-3">
+          <button type="submit" class="btn btn-primary w-25">Sign in</button>
+        </div>
+
+        <div class="text-center my-3">
+          <a href="./signup.html">I do not have a Morphic account yet</a>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>
+
   </div>
 
 
   <footer class="p-2 bg-light small">Copyright &copy; 2021 Raising the Floor - US Inc. All rights Reserved.</footer>
 </div>
 
-<%= require("../src/components.html").default %>
+<template id="input-field-component" class="input-field mb-2">
+  <label for="${id}" class="form-label">${label}</label>
+  <input id="${id}" type="${type:text}" class="form-control input-${type:text}" required pattern="${pattern}" placeholder=" " />
+
+  <button class="toggle-password btn" input-id="${id}">
+    <img class="hide-password" alt="Hide password" src="img/bootstrap-icons/eye.svg" />
+    <img class="show-password" alt="Reveal password" src="img/bootstrap-icons/eye-slash-fill.svg" />
+  </button>
+
+  <div class="invalid-feedback required">Required</div>
+  <div class="invalid-feedback">${validation-error}</div>
+  <div class="invalid-feedback invalid-placeholder">&nbsp;</div>
+</template>
+
+
+
 
 </body>
 </html>
