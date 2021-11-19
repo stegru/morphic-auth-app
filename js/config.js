@@ -9,10 +9,8 @@ if (href.host.endsWith(".morphic.dev")) {
   env = "PRODUCTION";
 } else if (href.host.match(/^pr-\d+\.morphic\.ste-test\.net$/)) {
   env = "PR";
-} else if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  env = "LOCAL";
 } else {
-  env = process.env.NODE_ENV.toUpperCase();
+  env = "LOCAL";
 }
 
 /**

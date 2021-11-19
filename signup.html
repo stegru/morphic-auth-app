@@ -1,4 +1,39 @@
-<div class="container">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width" name="viewport">
+  <title>Morphic</title>
+
+      <link rel="stylesheet" href="style/app.css" />
+      <link rel="stylesheet" href="style/bootstrap.css" />
+  
+      <script defer src="js/axios.min.js"></script>
+      <script defer src="js/cash.min.js"></script>
+  
+  <script defer type="module" src="js/signup.js"></script>
+</head>
+
+<body>
+
+<div id="ContentLoader">Loading</div>
+
+<div class="container-fluid " id="PageContainer">
+
+  <div role="banner" class="navbar navbar-light bg-light navbar-expand-md" id="top">
+    <header>
+      <a id="SkipToContent" href="#PageContent" class="contentLink">Skip to content</a>
+      <div class="navbar-brand">
+        <a href="/" ><img src="./img/logo-color.svg" alt="Custom MorphicBar Tool" class="logo"></a>
+
+        <h1 class="headerTitle">Morphic Customization Tool</h1>
+      </div>
+    </header>
+
+  </div>
+
+  <div role="main" id="PageContent" class="main mt-4">
+    <div class="container">
   <div class="row">
 
     <div class="col-md-6 order-2">
@@ -72,3 +107,29 @@
 
   </div>
 </div>
+
+  </div>
+
+
+  <footer class="p-2 bg-light small">Copyright &copy; 2021 Raising the Floor - US Inc. All rights Reserved.</footer>
+</div>
+
+<template id="input-field-component" class="input-field mb-2">
+  <label for="${id}" class="form-label">${label}</label>
+  <input id="${id}" type="${type:text}" class="form-control input-${type:text}" required pattern="${pattern}" placeholder=" " />
+
+  <button class="toggle-password btn" input-id="${id}">
+    <img class="hide-password" alt="Hide password" src="img/bootstrap-icons/eye.svg" />
+    <img class="show-password" alt="Reveal password" src="img/bootstrap-icons/eye-slash-fill.svg" />
+  </button>
+
+  <div class="invalid-feedback required">Required</div>
+  <div class="invalid-feedback">${validation-error}</div>
+  <div class="invalid-feedback invalid-placeholder">&nbsp;</div>
+</template>
+
+
+
+
+</body>
+</html>

@@ -1,5 +1,5 @@
-import { formValidation } from "../main";
-import { register } from "../api";
+import { formValidation } from "./main.js";
+import { register } from "./api.js";
 
 $(function () {
   const form = document.getElementById("signupForm");

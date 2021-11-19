@@ -1,6 +1,5 @@
-import { config } from "./config";
-import axios from "axios";
-import { i18n } from "./i18n";
+import { config } from "./config.js";
+
 
 const apiService = axios.create({
   baseURL: config.apiUrl,
@@ -61,47 +60,51 @@ export function useErrorHandler(showError) {
  * @param {Boolean} includeTitle Also include the title (returns an {ErrorMessage} object).
  * @return {String|ErrorMessage} The error message.
  */
-export function getErrorMessage(err, includeTitle) {
-  /** @type {ErrorMessage} */
+export function getErrorMessage(err) {
   const togo = {};
-
-  if (includeTitle) {
-    const action = err.config?.action || i18n.t("Errors.generic-action");
-    togo.title = i18n.t("Errors.generic-title", {action: action});
-  }
 
   if (err.userMessage) {
     // A message has been explicitly defined.
     togo.message = err.userMessage;
   } else if (err.response) {
     // Use the error code from the response
-    const apiError = err.response.data?.error;
+    const apiError = err.response.data && err.response.data.error;
     if (apiError) {
-      const messageKey = `Errors.${apiError}`;
-      const responseError = i18n.t(messageKey, {errorCode: apiError});
+      const responseError = errors[apiError];
 
-      if (responseError && responseError !== messageKey) {
+      if (responseError) {
         togo.message = responseError;
       } else {
-        togo.message = i18n.t("Errors.generic-server-error", {message: apiError});
+        togo.message = `Server error: ${apiError}`;
       }
-    } else {
+    } else if (err.response) {
       // Use the http status code to create an error message.
-      const errorCode = err.response?.status || err.code;
-      const statusMessageKey = `Errors.http.${err.response.status}`;
-      togo.message = i18n.t(statusMessageKey, {errorCode: errorCode});
+      const errorCode = err.response.status || err.code;
+      togo.message = errors.http[errorCode];
 
-      if (!togo.message || togo.message === statusMessageKey) {
+      if (!togo.message) {
         // No message - just quote the server status.
-        togo.message = i18n.t("Errors.generic-server-error", {message: `${err.response.statusText} (${err.response.status})`});
+        togo.message = `Server error: ${err.response.statusText} (${err.response.status})`;
       }
     }
   } else {
-    togo.message = err.message || i18n.t("Errors.generic-server-error", {message: err.code || err.name});
+    togo.message = err.message;
   }
 
-  return includeTitle ? togo : togo.message;
+  return togo;
 }
+
+const errors = {
+  "invalid_credentials": "That email address or password has not been recognized.",
+  "missing_required": "A required field is missing.",
+  "existing_email": "There is already an account associated with that email address.",
+  "existing_username": "There is already an account which uses that user name.",
+  "generic": "Server error: ",
+  http: {
+    "404": "Unable to access to the server. Please try again later.",
+    "500": "There is a problem with the server. Please try again later."
+  }
+};
 
 /**
  *

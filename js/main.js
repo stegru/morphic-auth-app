@@ -1,9 +1,4 @@
-import "./style/app.scss";
-import "./header.js";
-import cash from "cash-dom";
-import { useErrorHandler } from "./api";
-
-window.$ = cash;
+import { useErrorHandler } from "./api.js";
 
 /**
  * Add validation to a form.

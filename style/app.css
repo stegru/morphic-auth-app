@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+}
+
+#top {
+  border-bottom: 2px solid #002957;
+  padding: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+#top .headerTitle {
+  display: inline;
+  color: #002957;
+  margin-left: 0.8em;
+  font-size: 22px;
+}
+
+#top .logo {
+  margin-left: 1rem;
+  height: 2.4rem;
+}
+
+.contentLink {
+  font-size: larger;
+  background-color: white;
+  padding: 2px;
+  position: absolute;
+  z-index: 100;
+  transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contentLink:focus {
+    transition: transform 250ms ease-out;
+  }
+}
+
+.contentLink:not(.screenReader):focus-visible {
+  transform: translateX(0);
+}
+
+#PageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
+  visibility: visible !important;
+}
+
+#PageContainer #PageContent {
+  flex-grow: 1;
+}
+
+#ContentLoader {
+  display: none;
+}
+
+.alert:empty {
+  display: none;
+}
+
+.input-field {
+  position: relative;
+}
+
+.input-field input:placeholder-shown ~ .invalid-feedback:not(.required),
+.input-field input:not(:placeholder-shown) ~ .invalid-feedback.required {
+  display: none;
+}
+
+.input-field input ~ .invalid-feedback.invalid-placeholder {
+  display: block !important;
+}
+
+.input-field .was-validated input:invalid ~ .invalid-feedback.invalid-placeholder {
+  display: none !important;
+}
+
+.input-field .toggle-password {
+  display: none;
+}
+
+.input-field input.input-password {
+  background-position: right calc(1.5em + 0.75rem) center !important;
+}
+
+.input-field input.input-password ~ .toggle-password {
+  display: block;
+  position: absolute;
+  right: 0;
+  float: right;
+  padding: calc(0.375rem + 1px) 0.75rem;
+  transform: translateY(-100%);
+}
+
+.input-field input.input-password ~ .toggle-password img {
+  vertical-align: text-bottom;
+}
+
+.input-field input.input-password[type='password'] ~ .toggle-password .show-password {
+  display: none;
+}
+
+.input-field input.input-password:not([type='password']) ~ .toggle-password .hide-password {
+  display: none;
+}

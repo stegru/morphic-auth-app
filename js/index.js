@@ -1,5 +1,5 @@
-import { formValidation } from "../main";
-import { login } from "../api";
+import { formValidation } from "./main.js";
+import { login } from "./api.js";
 
 $(function () {
   const form = document.getElementById("loginForm");
@@ -13,4 +13,3 @@ $(function () {
   });
 
 });
-
