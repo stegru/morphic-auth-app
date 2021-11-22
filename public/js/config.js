@@ -20,6 +20,7 @@ if (href.host.endsWith(".morphic.dev")) {
  * @property {String} appBaseUrl The url to direct to when authenticated.
  * @property {String} loggedInUrl The url to direct to when authenticated.
  * @property {String} registeredUrl The url to direct to when registered.
+ * @property {String} recaptchaSiteKey
  */
 
 /**
@@ -28,7 +29,8 @@ if (href.host.endsWith(".morphic.dev")) {
 const configs = {
   BASE: {
     env: env,
-    apiUrl: ""
+    apiUrl: "",
+    recaptchaSiteKey: "6LcDs3waAAAAAFGKPHxnNuPBO__5LqaEybnS6wn0"
   },
   LOCAL: {
     apiUrl: href.origin + "/api",
@@ -37,11 +39,15 @@ const configs = {
       const u = new URL(url);
       u.port = 8080;
       return u.toString();
-    })(href.origin)
+    })(href.origin),
+
+    // Valid for ste-test.net: to test locally, use localhost.ste-test.net
+    recaptchaSiteKey: href.host.match(/^[0-9.:]+$/) ? null : "6LcgxGoaAAAAACb4-Sdm1xj5UWQiuyYAieFZUhL4"
   },
   PR: {
     apiUrl: "https://api.morphic.dev",
-    appBaseUrl: "https://custom.morphic.dev"
+    appBaseUrl: "https://custom.morphic.dev",
+    recaptchaSiteKey: "6LcgxGoaAAAAACb4-Sdm1xj5UWQiuyYAieFZUhL4"
   },
   STAGING: {
     apiUrl: "https://api.morphic.dev",

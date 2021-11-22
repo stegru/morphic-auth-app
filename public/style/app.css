@@ -105,3 +105,7 @@ body {
 .input-field input.input-password:not([type='password']) ~ .toggle-password .hide-password {
   display: none;
 }
+
+body:not(.show-recaptcha) .grecaptcha-badge {
+  visibility: hidden;
+}

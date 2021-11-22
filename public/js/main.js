@@ -1,4 +1,5 @@
 import { useErrorHandler } from "./api.js";
+import { config } from "./config.js";
 
 /**
  * Add validation to a form.
@@ -97,5 +98,31 @@ export function makeComponent(template) {
       this.replaceWith(newNode);
     }
   });
+}
 
+// Load the reCAPTCHA script
+$(function () {
+  if (config.recaptchaSiteKey) {
+    const script = document.createElement("script");
+    script.src = `https://www.google.com/recaptcha/api.js?render=${config.recaptchaSiteKey}`;
+    document.head.appendChild(script);
+  }
+});
+
+/**
+ * Show the recaptcha badge
+ */
+export function showRecaptcha(show = true) {
+  document.body.classList.toggle("show-recaptcha", !!show);
+}
+
+/**
+ * Get the recaptcha token
+ */
+export function getRecaptchaToken(action) {
+  return new Promise((resolve, reject) => {
+    grecaptcha.ready(function() {
+      grecaptcha.execute('reCAPTCHA_site_key', {action}).then(resolve, reject);
+    });
+  });
 }
