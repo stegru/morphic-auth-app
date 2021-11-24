@@ -200,6 +200,12 @@ body:not(.show-recaptcha) .grecaptcha-badge {
   border-color: #002957;
 }
 
+h1, h2, h3,
+.h1, .h2, .h3 {
+  color: #002957;
+  font-weight: bold;
+}
+
 /* Button spinners */
 button {
   position: relative;
