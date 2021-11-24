@@ -21,6 +21,7 @@ body {
   height: 2.4rem;
 }
 
+/* Skip to content link - off-screen until focused */
 .contentLink {
   font-size: larger;
   background-color: white;
@@ -41,6 +42,7 @@ body {
 }
 
 #PageContainer {
+  /* put footer at the bottom of the view */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -52,10 +54,12 @@ body {
   flex-grow: 1;
 }
 
+/* Un-hide the content when the css is loaded */
 #ContentLoader {
   display: none;
 }
 
+/* Hide empty alert boxes */
 .alert:empty {
   display: none;
 }
@@ -66,6 +70,7 @@ body {
 
 .input-field input:placeholder-shown ~ .invalid-feedback:not(.required),
 .input-field input:not(:placeholder-shown) ~ .invalid-feedback.required {
+  /* Show either the "required" or validation message, for an invalid input */
   display: none;
 }
 
@@ -74,6 +79,7 @@ body {
 }
 
 .input-field .was-validated input:invalid ~ .invalid-feedback.invalid-placeholder {
+  /* Hide the validation message placeholder when the real message is displayed */
   display: none !important;
 }
 
@@ -106,6 +112,7 @@ body {
   display: none;
 }
 
+/* Hide the recaptcha badge, unless it's required. */
 body:not(.show-recaptcha) .grecaptcha-badge {
   visibility: hidden;
 }
