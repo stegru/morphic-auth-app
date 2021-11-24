@@ -21,6 +21,10 @@ body {
   height: 2.4rem;
 }
 
+template, template * {
+  display: none;
+}
+
 /* Skip to content link - off-screen until focused */
 .contentLink {
   font-size: larger;
@@ -50,13 +54,13 @@ body {
   visibility: visible !important;
 }
 
-#PageContainer #PageContent {
+#PageContainer #PageContent, #PageContainer #ContentLoader {
   flex-grow: 1;
 }
 
 /* Un-hide the content when the css is loaded */
-#ContentLoader {
-  display: none;
+body.loaded #PageContent {
+  visibility: unset !important;
 }
 
 /* Hide empty alert boxes */

@@ -74,8 +74,10 @@ function autoFocus(form, invalid) {
   }
 }
 
+
 $(function () {
   $("template").each((i, elem) => makeComponent(elem));
+  document.body.classList.add("loaded");
 });
 
 /**
