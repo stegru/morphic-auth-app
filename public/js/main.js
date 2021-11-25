@@ -38,12 +38,6 @@ export function formValidation(form, onSubmit) {
     }
   });
 
-  // Handle errors from the API server
-  const alert = document.getElementById("formAlert");
-  alert && useErrorHandler((errorMessage) => {
-    alert.innerText = errorMessage;
-  });
-
   // Password reveal button
   $(".input-password ~ .toggle-password", form).on("click", function (e) {
     e.preventDefault();
@@ -63,6 +57,15 @@ export function formValidation(form, onSubmit) {
 
   autoFocus(form);
 }
+
+// Handle errors from the API server
+$(function () {
+  const alert = document.getElementById("formError");
+
+  alert && useErrorHandler((errorMessage) => {
+    alert.innerText = errorMessage;
+  });
+});
 
 function autoFocus(form, invalid) {
   const input = invalid

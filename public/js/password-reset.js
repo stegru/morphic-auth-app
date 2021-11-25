@@ -1,5 +1,5 @@
 import { formValidation, getRecaptchaToken, showRecaptcha } from "./main.js";
-import { login, resetPassword } from "./api.js";
+import { resetPassword } from "./api.js";
 import { config } from "./config.js";
 
 $(function () {

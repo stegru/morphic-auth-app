@@ -31,7 +31,7 @@ const configs = {
     env: env,
     apiUrl: "",
     recaptchaSiteKey: "6LcDs3waAAAAAFGKPHxnNuPBO__5LqaEybnS6wn0",
-    pages: {"login":".","signup":"signup.html","passwordReset":"password-reset.html"}
+    pages: {"login":".","signup":"signup.html","passwordReset":"password-reset.html","confirmEmail":"confirm-email.html"}
   },
   LOCAL: {
     apiUrl: href.origin + "/api",

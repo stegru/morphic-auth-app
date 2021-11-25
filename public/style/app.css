@@ -229,3 +229,15 @@ form.submitting button {
 form.submitting button .spinner-border {
   display: unset;
 }
+
+/* email confirmation messages */
+body.confirm-email-page .when-confirmed, body.confirm-email-page .when-confirmed-already, body.confirm-email-page .when-bad-token, body.confirm-email-page .when-error {
+  display: none;
+}
+
+body.confirm-email-page .is-confirmed .when-confirmed,
+body.confirm-email-page .is-confirmed-already .when-confirmed-already,
+body.confirm-email-page .is-bad-token .when-bad-token,
+body.confirm-email-page .is-error .when-error {
+  display: unset;
+}

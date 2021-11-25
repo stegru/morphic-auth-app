@@ -135,3 +135,7 @@ export function resetPassword(email, recaptchaToken) {
     g_recaptcha_response: recaptchaToken
   });
 }
+
+export function confirmEmail(userId, token) {
+  return apiService.post(`/v1/users/${userId}/verify_email/${token}`, {});
+}
