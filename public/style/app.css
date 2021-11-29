@@ -82,7 +82,7 @@ body.loaded #PageContent {
   display: block !important;
 }
 
-.input-field .was-validated input:invalid ~ .invalid-feedback.invalid-placeholder {
+.input-field.was-validated input:invalid ~ .invalid-feedback.invalid-placeholder, .input-field .was-validated input:invalid ~ .invalid-feedback.invalid-placeholder {
   /* Hide the validation message placeholder when the real message is displayed */
   display: none !important;
 }
