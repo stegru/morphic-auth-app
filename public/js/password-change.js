@@ -15,7 +15,11 @@ $(function () {
   const password = document.getElementById("password");
   const passwordConfirm = document.getElementById("passwordConfirm");
 
-  formValidation(form, () => changePassword(currentPassword, password));
+  formValidation(form, () => {
+    changePassword(currentPassword.value, password.value).then(() => {
+      location.href = new URL("#/password-changed", config.appBaseUrl);
+    });
+  });
 
   // Ensure the passwordConfirm matches the password.
   $(password).on("input", function () {
