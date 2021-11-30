@@ -191,3 +191,6 @@ export function changePassword(currentPassword, newPassword) {
   });
 }
 
+export function logout() {
+  return apiService.delete("/v1/auth/token").then(() => setToken());
+}

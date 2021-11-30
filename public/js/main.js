@@ -1,4 +1,4 @@
-import { useErrorHandler } from "./api.js";
+import { getToken, logout, useErrorHandler } from "./api.js";
 import { config } from "./config.js";
 
 /**
@@ -142,14 +142,33 @@ export function showRecaptcha(show = true) {
 }
 
 export function getRecaptchaToken(action) {
+  /* global grecaptcha */
   return new Promise((resolve, reject) => {
     grecaptcha.ready(function () {
       try {
         grecaptcha.execute(config.recaptchaSiteKey, {action}).then(resolve, reject);
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.error(e);
         reject(e);
       }
     });
   });
 }
+
+// Set a body class to show the authentication state.
+$(function () {
+  const loggedIn = !!getToken().token;
+
+  document.body.classList.toggle("logged-in", loggedIn);
+  document.body.classList.toggle("logged-out", !loggedIn);
+});
+
+// Log-out button
+$(function () {
+  $("#LogoutButton").on("click", function () {
+    logout().then(() => {
+      location.href = config.pages.login;
+    });
+  });
+});

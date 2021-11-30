@@ -16,6 +16,10 @@ body {
   font-size: 22px;
 }
 
+#top header {
+  flex-grow: 1;
+}
+
 #top .logo {
   margin-left: 1rem;
   height: 2.4rem;
@@ -240,4 +244,17 @@ body.confirm-email-page .is-confirmed-already .when-confirmed-already,
 body.confirm-email-page .is-bad-token .when-bad-token,
 body.confirm-email-page .is-error .when-error {
   display: unset;
+}
+
+.when-logged-in, .when-logged-out {
+  display: none;
+}
+
+body.logged-in .when-logged-in,
+body.logged-out .when-logged-out {
+  display: unset;
+}
+
+body.index-page #LoginButton {
+  display: none !important;
 }
