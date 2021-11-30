@@ -1,9 +1,22 @@
 import { config } from "./config.js";
 
-
+/* global axios */
+/**
+ * @type {AxiosInstance}
+ */
 const apiService = axios.create({
   baseURL: config.apiUrl,
   headers: { "Content-Type": "application/json; charset=utf-8" }
+});
+
+// Add the session token to requests.
+apiService.interceptors.request.use((req) => {
+  const {token} = getToken();
+  if (token) {
+    req.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return req;
 });
 
 /**
@@ -13,7 +26,32 @@ const apiService = axios.create({
  * @param {String} token
  */
 function authComplete(action, userId, token) {
+  setToken(userId, token);
   location.href = new URL(`#/auth/${action}/${encodeURIComponent(userId)}/${encodeURIComponent(token)}`, config.appBaseUrl).toString();
+}
+
+const tokenCookie = "token";
+
+/**
+ * Sets the session token.
+ * @param {String} userId
+ * @param {String} token
+ */
+function setToken(userId, token) {
+  const value = `${encodeURIComponent(userId)}/${encodeURIComponent(token)}`;
+  document.cookie = `${tokenCookie}=${value}`;
+}
+
+/**
+ * Gets the session token and user id.
+ * @return {{userId: string, token: string}}
+ */
+export function getToken() {
+  const m = document.cookie.match("(^|;)\\s*" + tokenCookie + "\\s*=\\s*([^/;]+)/([^;]+)");
+  return {
+    userId: m && decodeURIComponent(m[2]),
+    token: m && decodeURIComponent(m[3])
+  };
 }
 
 /**
@@ -126,7 +164,7 @@ export function register(email, password, firstName, lastName) {
     email,
     first_name: firstName,
     last_name: lastName
-  }).then(response => authComplete("login", response.data.user.id, response.data.token));
+  }).then(response => authComplete("register", response.data.user.id, response.data.token));
 }
 
 export function resetPassword(email, recaptchaToken) {
@@ -136,6 +174,15 @@ export function resetPassword(email, recaptchaToken) {
   });
 }
 
-export function confirmEmail(userId, token) {
-  return apiService.post(`/v1/users/${userId}/verify_email/${token}`, {});
+export function confirmEmail(userId, confirmationToken) {
+  return apiService.post(`/v1/users/${userId}/verify_email/${confirmationToken}`, {});
 }
+
+export function changePassword(currentPassword, newPassword) {
+  const {userId} = getToken();
+  return apiService.post(`/v1/users/${userId}/password`, {
+    existing_password: currentPassword,
+    new_password: newPassword
+  });
+}
+

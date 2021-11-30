@@ -5,14 +5,21 @@ $(function () {
   const form = document.getElementById("loginForm");
   const email = document.getElementById("email");
   const password = document.getElementById("password");
-  const loginMessage = document.getElementById("loginMessage");
+  const successMessage = document.getElementById("successMessage");
+  const formError = document.getElementById("formError");
 
   formValidation(form, () => login(email.value, password.value, null, null));
 
-  const message = sessionStorage.getItem("loginMessage");
+  const message = sessionStorage.getItem("successMessage");
   if (message) {
-    sessionStorage.removeItem("loginMessage");
-    loginMessage.innerText = message;
+    sessionStorage.removeItem("successMessage");
+    successMessage.innerText = message;
+  }
+
+  const errorMessage = sessionStorage.getItem("errorMessage");
+  if (errorMessage) {
+    sessionStorage.removeItem("errorMessage");
+    formError.innerText = errorMessage;
   }
 
 });
