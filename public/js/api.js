@@ -38,8 +38,13 @@ const tokenCookie = "token";
  * @param {String} token
  */
 function setToken(userId, token) {
-  const value = `${encodeURIComponent(userId)}/${encodeURIComponent(token)}`;
-  document.cookie = `${tokenCookie}=${value}`;
+  const value = `${encodeURIComponent(userId || "")}/${encodeURIComponent(token || "")}`;
+
+  const cookie = config.cookieDomain
+    ? `${tokenCookie}=${value}; domain=${config.cookieDomain}`
+    : `${tokenCookie}=${value}`;
+  document.cookie = cookie;
+
 }
 
 /**
